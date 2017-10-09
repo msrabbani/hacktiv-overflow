@@ -12,9 +12,10 @@ function creatThread(req,res){
     created_at: new Date()
   }).then(dataThread => {
     console.log('====>>>>',dataThread);
-    Users.findById(req.params)
+    Users.findById(req.body.user_id)
+    // populate('users')
     .then(dataUser => {
-      console.log('===========>>>',dataUser);
+      console.log('xxxxx======>>>',dataUser);
       dataUser.thread_id.push(dataThread._id)
       dataUser.save(function(err){
         if (err) {

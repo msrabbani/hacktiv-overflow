@@ -89,6 +89,15 @@ export default {
     Navbar
   },
   created () {
+    if (localStorage.auth) {
+      if (localStorage.auth === 'undefined') {
+        this.$router.push('/')
+      } else {
+        this.$router.push('/threads')
+      }
+    } else {
+      this.$router.push('/')
+    }
     this.getAllThread()
   }
 }
