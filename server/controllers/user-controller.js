@@ -7,7 +7,7 @@ require('dotenv').config();
 const kunci = process.env.DB_SK;
 
 
-function createUser(req,res){
+function signup(req,res){
   var hash = bcrypt.hashSync(req.body.password, salt);
    model.create({
      name       : req.body.name,
@@ -48,9 +48,6 @@ function deleteUser(req,res){
   })
 }
 
-function updateUser (req,res){
-
-}
 /*
 function updateUser(req, res) {
   let hash;
@@ -82,9 +79,9 @@ function updateUser(req, res) {
 }
 */
 
-function login(req,res){
+function signin(req,res){
   model.findOne({email:req.body.email}).then(dataUser => {
-    console.log('==>>',dataUser._id);
+    console.log('==>>',dataUser);
         if (bcrypt.compareSync(req.body.password, dataUser.password)) {
            let token = jwt.sign({email: dataUser.email, role: dataUser.role, userid: dataUser._id}, kunci, {expiresIn:'1h'})
            console.log('success');
@@ -102,9 +99,9 @@ function login(req,res){
 
 
 module.exports = {
-  createUser,
+  signup,
   getAllUser,
   getSingleUser,
   deleteUser,
-  login
+  signin
 }

@@ -3,7 +3,7 @@ like stackoverflow with Vue.js framework
 
 # hacktivoverflow
 
-Hacktiv Overcute is simple forum for asking anything like stackoverflow.com
+Hacktiv-overflow is simple forum for asking anything like stackoverflow.com
 
 ## Build Setup
 

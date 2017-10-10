@@ -12,13 +12,13 @@ function createAnswer(req,res){
      created_at : new Date()
    }).then(dataAnswer => {
      console.log('=>',dataAnswer);
-     Threads.findById(req.params)
+     Threads.findById(dayaAnswer.user_id)
      .then(dataThread => {
        console.log('=>>',dataThread);
        dataThread.answer_id.push(dataAnswer._id);
        dataThread.save(function(err){
          if(err){
-           res.send(error.massage)
+           res.send(error.massge)
          }else {
            res.send('add answer success...')
            res.send(dataAnswer)
@@ -58,6 +58,25 @@ function deleteAnswer(req,res){
   })
 }
 
+function updateAnswer(req,res){
+  Answers.find({
+    _id:req.params.id
+  }).then(dataAnswer => {
+    console.log("ini dataAnswer : ",dataAnswer);
+    Answer.update({
+      _id:dataAnswer._id
+    }, {
+      $set: {
+        username : req.body.username || dataAnswer.username,
+        user_id  : req.body.user_id || dataAnswer.user_id,
+        thread_id: req.body.thread_id || dataAnswer.thread_id,
+        answer   : req.body.answer || dataAnswer.answer,
+        vote     : req.body.vote || dataAnswer.vote,
+        created_at : new Date()
+      }
+    })
+  })
+}
 /*
 function updateUser(req, res) {
   let hash;

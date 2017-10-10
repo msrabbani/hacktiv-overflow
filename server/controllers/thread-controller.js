@@ -12,9 +12,9 @@ function creatThread(req,res){
     created_at: new Date()
   }).then(dataThread => {
     console.log('====>>>>',dataThread);
-    Users.findById(req.params)
+    Users.findById(req.body.user_id)
     .then(dataUser => {
-      console.log('===========>>>',dataUser);
+      console.log('xxxxx======>>>',dataUser);
       dataUser.thread_id.push(dataThread._id)
       dataUser.save(function(err){
         if (err) {
@@ -33,6 +33,7 @@ function creatThread(req,res){
 }
 
 function getAllThread(req,res){
+  console.log(req);
   Threads.find({})
   .then(dataThread => {
     res.send(dataThread)

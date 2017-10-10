@@ -3,7 +3,7 @@ var Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId;
 
 var answerSchema = new Schema({
-    username   : String,
+    username    : String,
     answer      : String,
     vote        : Number,
     thread_id   : [{ type: Schema.Types.ObjectId, ref: 'threads' }],

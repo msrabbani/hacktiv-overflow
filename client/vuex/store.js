@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 
-
 const http = axios.create ({
   baseURL: 'http://localhost:3000'
 })
@@ -28,7 +27,11 @@ const mutations = { //bertugas merubah states jadi sebuah store
 
 const actions = { // proses async api request
   getAllThread ({ commit }) {
-    http.get('/threads')
+    http.get('/threads', {
+      headers: {
+        auth:localStorage.getItem('auth')
+      }
+    })
     .then(({ data }) => {
     console.log('data di actions (threads) : ', data);
     commit('setThreads', data)
@@ -45,7 +48,6 @@ const actions = { // proses async api request
     console.log(err);
   })
   },
-
   getAllUser ({ commit }) {
     http.get('/users')
     .then(({ data }) => {

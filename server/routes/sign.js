@@ -2,8 +2,7 @@ var express = require('express');
 var router = express.Router();
 var userCont = require('../controllers/user-controller')
 
-router.get('/', userCont.getAllUser)
-router.get('/:id', userCont.getSingleUser)
-router.delete('/:id', userCont.deleteUser)
+router.post('/signin', userCont.signin)
+router.post('/signup', userCont.signup)
 
 module.exports = router;

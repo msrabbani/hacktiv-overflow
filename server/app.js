@@ -10,6 +10,8 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var threads = require('./routes/threads');
 var answers = require('./routes/answers');
+var sign = require('./routes/sign');
+
 
 var app = express();
 
@@ -17,7 +19,7 @@ app.use(cors())
 
 //mongoose connect database
 var mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/hacktivoverflow')
+mongoose.connect('mongodb://msr:tgW4JaucShOYLAxb@cluster0-shard-00-00-g7yx7.mongodb.net:27017,cluster0-shard-00-01-g7yx7.mongodb.net:27017,cluster0-shard-00-02-g7yx7.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -31,7 +33,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
+app.use('/', sign);
 app.use('/users', users);
 app.use('/threads', threads);
 app.use('/answers', answers);

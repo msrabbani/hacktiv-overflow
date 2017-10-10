@@ -11,7 +11,6 @@
         <h4 class="modal-title">Create Questions</h4>
       </div>
       <div class="modal-body">
-          <form v-on:submit ="postQuestions()" class="form-horizontal">
             <fieldset>
               <div class="form-group">
                 <label for="inputEmail" class="col-lg-2 control-label">Title</label>
@@ -23,18 +22,17 @@
                 <label for="textArea" class="col-lg-2 control-label">Questions</label>
                 <div class="col-lg-10">
                   <textarea v-model="question" class="form-control" rows="3" id="questions" placeholder="questions"></textarea>
-                  <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                   <button type="submit" class="btn btn-primary">Create</button>
                 </div>
               </div>
             </fieldset>
-          </form>
       </div>
     </div>
   </div>
 </div>
 <br><br>
+
   <div class="panel panel-warning" v-for = "threadz in threads" >
   <div class="panel-heading">
     <h3 class="panel-title">{{threadz.title}}</h3>
@@ -42,6 +40,10 @@
   <div class="panel-body">
     <p>{{threadz.question}}</p>
   </div>
+  <span>
+    <a class="btn btn-primary btn-xs">Details</a>
+  </span>
+
 </div>
 
 </div>
@@ -58,17 +60,11 @@ export default {
       'getAllThread'
     ]),
     postQuestions () {
-      console.log('masuk')
-      let self = this
-      axios({ // untuk ngepost ke backend
-        method: 'post',
-        url: 'http://localhost:3000/threads',
-        data: {
-          title: self.title,
-          question: self.question
-        }
-      }).then(dataThread => {
-        console.log(dataThread)
+      axios.post('http://localhost:3000/threads', {
+        title: this.title,
+        question: this.question
+      }).then(dataQ => {
+        console.log(dataQ)
       }).catch(err => {
         console.log(err)
       })
@@ -89,6 +85,15 @@ export default {
     Navbar
   },
   created () {
+    if (localStorage.auth) {
+      if (localStorage.auth === 'undefined') {
+        this.$router.push('/')
+      } else {
+        this.$router.push('/threads')
+      }
+    } else {
+      this.$router.push('/')
+    }
     this.getAllThread()
   }
 }
