@@ -18,8 +18,6 @@ function creatThread(req,res){
       dataUser.thread_id.push(dataThread._id)
       dataUser.save(function(err){
         if (err) {
-          res.send(err.massage)
-        }else {
           console.log("add thread success!!");
           res.send(dataThread)
         }
