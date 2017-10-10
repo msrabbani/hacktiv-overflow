@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <Navbar/>
+  <div class="">
+  <div class="Sign">
   <form class="form-horizontal of">
     <fieldset>
     <div class="form-group">
@@ -17,53 +17,71 @@
     </div>
     <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
-        <button type="submit" class="btn btn-primary" @click="signin">Signin</button>
+        <button type="button" class="btn btn-primary" @click="signin">Signin</button>
         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#signupModal">Signup</button>
-        <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#signupModal">Open Modal</button -->
       </div>
     </div>
   </fieldset>
 </form>
 
 <!-- Modal Signup -->
-<div class="modal" id="signupModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Signup Form</h4>
-      </div>
-      <div class="modal-body">
-        <label for="inputName" class="col-lg-2 control-label">Name</label>
-        <div class="col-lg-10">
-          <input type="text" id="inputName" placeholder="Name" v-model="formSignup.name">
-        </div>
-        <div class="form-group">
-          <label for="inputEmail" class="col-lg-2 control-label">Email</label>
-          <div class="col-lg-10">
-            <input type="text"  id="inputEmail" placeholder="Email" v-model="formSignup.email">
-          </div>
-          <label for="inputPassword" class="col-lg-2 control-label">Password</label>
-          <div class="col-lg-10">
-            <input type="password"  id="inputPassword" placeholder="Password" v-model="formSignup.password">
-          </div>
-      </div>
+<di<div class="modal" id="signupModal">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h4 class="modal-title">Signup Form</h4>
     </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" data-dismiss="modal" @click="signup">Signup</button>
+    <div class="modal-body">
+        <form v-on:submit ="signup" class="form-horizontal">
+          <fieldset>
+            <div class="form-group">
+              <label for="inputPassword" class="col-lg-2 control-label">Name</label>
+              <div class="col-lg-10">
+                <input v-model="formSignup.name" type="text" class="form-control" id="name" placeholder="name">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+              <div class="col-lg-10">
+                <input v-model="formSignup.email" type="text" class="form-control" id="email" placeholder="email">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+              <div class="col-lg-10">
+                <input v-model="formSignup.password" type="text" class="form-control" id="password" placeholder="password">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-lg-10 col-lg-offset-2">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" data-dismiss="modal" @click="signup">Signup</button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
       </div>
     </div>
   </div>
+</div>
+</div>
 </div>
 
 </div>
 </template>
 
 <script>
-import Navbar from '@/components/Navbar'
 import axios from 'axios'
+import Threads from '@/components/FormThread'
+
 export default {
+  components: {
+    Threads
+  },
   data () {
     return {
       formSignin: {
@@ -76,9 +94,6 @@ export default {
         password: ''
       }
     }
-  },
-  components: {
-    Navbar
   },
   methods: {
     signin () {
@@ -121,4 +136,7 @@ export default {
 </script>
 
 <style>
+.Sign {
+  padding: 50px;
+}
 </style>

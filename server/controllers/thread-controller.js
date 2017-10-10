@@ -13,7 +13,6 @@ function creatThread(req,res){
   }).then(dataThread => {
     console.log('====>>>>',dataThread);
     Users.findById(req.body.user_id)
-    // populate('users')
     .then(dataUser => {
       console.log('xxxxx======>>>',dataUser);
       dataUser.thread_id.push(dataThread._id)
@@ -34,6 +33,7 @@ function creatThread(req,res){
 }
 
 function getAllThread(req,res){
+  console.log(req);
   Threads.find({})
   .then(dataThread => {
     res.send(dataThread)

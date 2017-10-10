@@ -14,12 +14,12 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><router-link to = "/questions">Questions</router-link></li>
+            <li><router-link to = "/threads">Questions</router-link></li>
             <li><router-link to = "/users">Users</router-link></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><router-link to="/signin">Signin</router-link></li>
-            <li><a href="#">Signout</a></li>
+            <!-- <li><router-link to="/signin">Signin</router-link></li> -->
+            <li><a @click="signout">Signout</a></li>
           </ul>
         </div>
       </div>
@@ -29,6 +29,11 @@
 
 <script>
 export default {
-
+  methods: {
+    signout () {
+      localStorage.removeItem('auth')
+      this.$router.push('/')
+    }
+  }
 }
 </script>

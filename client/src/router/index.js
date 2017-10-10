@@ -7,19 +7,21 @@ import Signin from '@/components/Signin'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
-      path: '/threads',
-      name: 'Threads',
-      component: FormThreads
-    }, {
+      path: '/',
+      name: 'Signin',
+      component: Signin
+    },
+    {
       path: '/users',
       name: 'Users',
       component: FormUsers
     }, {
-      path: '/',
-      name: 'Signin',
-      component: Signin
+      path: '/threads',
+      name: 'Threads',
+      component: FormThreads
     }
   ]
 })
