@@ -1,14 +1,13 @@
 var mongoose = require('mongoose')
-var Schema = mongoose.Schema,
-    ObjectId = Schema.ObjectId;
+var Schema = mongoose.Schema
 
 var threadSchema = new Schema({
     user_name : String,
     title     : String,
     question  : String,
     vote      : Number,
-    answer_id :  { type: Schema.Types.ObjectId, ref: 'answers' },
-    user_id   :  { type: Schema.Types.ObjectId, ref: 'users' },
+    answer_id :  [{ type: Schema.Types.ObjectId, ref: 'Answer' }],
+    user_id   :  { type: Schema.Types.ObjectId, ref: 'User' },
     created_at: Date,
     updated_at: Date
 });

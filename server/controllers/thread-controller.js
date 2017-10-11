@@ -3,38 +3,25 @@ const Threads = require('../models/thread-model')
 // const Answers = require('../models/answer-model')
 
 function creatThread(req,res){
+  console.log('==ini req==>',req.dataUser);
   Threads.create({
-    user_id   : req.body.user_id,
+    user_id   : req.dataUser.userid,
     username  : req.body.username,
     title     : req.body.title,
     question  : req.body.question,
     vote      : req.body.vote,
     created_at: new Date()
   }).then(dataThread => {
-    console.log('====>>>>',dataThread);
-    Users.findById(req.body.user_id)
-    .then(dataUser => {
-      console.log('xxxxx======>>>',dataUser);
-      dataUser.thread_id.push(dataThread._id)
-      dataUser.save(function(err){
-        if (err) {
-          res.send(err.massage)
-        }else {
-          console.log("add thread success!!");
-          res.send(dataThread)
-        }
-      })
+    // console.log('====>>>>',dataThread)
+    res.send(dataThread)
     }).catch(error=>{
-      res.send(error)
-    })
-  }).catch(error=>{
     res.send(error)
   })
 }
 
 function getAllThread(req,res){
-  console.log(req);
-  Threads.find({})
+  // console.log(req);
+  Threads.find({}).populate('user_id')
   .then(dataThread => {
     res.send(dataThread)
   }).catch(error => {
@@ -53,9 +40,9 @@ function getSingleThread(req,res){
 }
 
 function deleteThread(req,res){
-  Threads.remove({"_id":req.params.id})
+  Threads.remove({"userid._id":req.dataUser.userid})
   .then(dataThread=>{
-    res.send('Terhapus')
+    res.send('Terhapus!!')
   }).catch(error=>{
     res.send(error)
   })
