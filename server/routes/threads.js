@@ -5,7 +5,7 @@ var auth = require('../controllers/auth-controller')
 
 router.post('/', auth.authUser, threadCont.creatThread)
 router.get('/', threadCont.getAllThread)
-router.get('/:id', auth.authUser, threadCont.getSingleThread)
+router.get('/:id', threadCont.getSingleThread)
 router.delete('/:id', auth.authUser, threadCont.deleteThread)
 
 module.exports = router;

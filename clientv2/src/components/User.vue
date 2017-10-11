@@ -1,15 +1,21 @@
 <template>
   <div class="Users">
     <Navbar/>
-    <h1>Users</h1>
-    <div class="list-group" v-for = "userz in users">
-    <a href="#" class="list-group-item">
-      <h4 class="list-group-item-heading">{{userz.name}}</h4>
-      <p class="list-group-item-text">{{userz.email}}</p>
-      <p class="list-group-item-text">{{userz.role}}</p>
-      <p class="list-group-item-text">{{userz.created_at}}</p>
-    </a>
-  </div>
+    <div class="container">
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-9">
+        <h1>Users</h1>
+        <div class="list-group" v-for = "userz in users">
+          <a href="#" class="list-group-item">
+            <h4 class="list-group-item-heading">{{userz.name}}</h4>
+            <p class="list-group-item-text">{{userz.email}}</p>
+            <p class="list-group-item-text">{{userz.role}}</p>
+            <p class="list-group-item-text">{{userz.created_at}}</p>
+          </a>
+        </div>
+      </div>
+    </div>
 </div>
 </template>
 
@@ -39,6 +45,6 @@ export default {
 
 <style>
 .Users {
-  padding-top: 35px;
+  padding-top: 40px;
 }
 </style>

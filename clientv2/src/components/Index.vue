@@ -1,8 +1,8 @@
-<template lang="html">
-  <div class="main-page">
+<template>
+  <div class="indexPage">
     <navbar/>
     <headers/>
-    <router-view/>
+
     <footers/>
   </div>
 </template>
@@ -11,7 +11,6 @@
 import navbar from '@/components/Navbar'
 import headers from '@/components/Header'
 import footers from '@/components/Footer'
-
 export default {
   components: {
     navbar,
@@ -21,5 +20,5 @@ export default {
 }
 </script>
 
-<style>
+<style lang="css">
 </style>

@@ -6,8 +6,8 @@ var answerSchema = new Schema({
     username    : String,
     answer      : String,
     vote        : Number,
-    thread_id   : [{ type: Schema.Types.ObjectId, ref: 'threads' }],
-    user_id     : [{ type: Schema.Types.ObjectId, ref: 'users' }],
+    thread_id   : [{ type: Schema.Types.ObjectId, ref: 'Thread' }],
+    user_id     : { type: Schema.Types.ObjectId, ref: 'User' },
     created_at  : Date,
     updated_at  : Date
 });

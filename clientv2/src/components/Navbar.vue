@@ -9,14 +9,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Hacktiv-Overflow</a>
+      <a class="navbar-brand" href="/">Hacktiv-Overflow</a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <!-- <li><a href="#">Threads<span class="sr-only">(current)</span></a></li> -->
-        <li><a href="/">Threads</a></li>
-        <li><a href="users">Users</a></li>
+        <li><a href="/questions">Threads</a></li>
+        <li><a href="/users">Users</a></li>
       </ul>
       <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
@@ -91,8 +91,8 @@ export default {
         password: this.formSignin.password
       }).then(dataSign => {
         console.log(dataSign)
+        alert('anda berhasil signin... @.@')
         localStorage.setItem('auth', dataSign.data.token)
-        alert('anda berhasil signup, silahkan login')
       }).catch(err => {
         console.log(err)
       })
